@@ -85,8 +85,7 @@
 
                                         <form action="upload" method="POST" enctype="multipart/form-data">
                                         {% csrf_token %}
-                                        <p class="my-3 leading-6"> Upload pics
-                                        </p>
+                                        <p class="my-3 leading-6"> Upload pics</p>
                                             <div>
                                                 <input type="file" name="image_upload" accept="image/*"
                                                     onchange="loadFile(event)">
@@ -95,7 +94,7 @@
                                                 <!-- <br> -->
                                                 <button class="button bg-blue-700 upload-btn" type="submit">Upload</button>
                                             </div>
-                                        <form action=""></form>
+                                        </form>
         
                                         <!-- <a href="#" class="uk-text-muted mt-3 uk-link"
                                             uk-toggle="target: .choose-upload ;  animation: uk-animation-slide-right-small, uk-animation-slide-left-medium; queued: true">
@@ -226,6 +225,7 @@
                                     </span>
                                 </div>
                               <div>
+                                {% if user.username == post.user%}
                                 <a href="#"> <i class="icon-feather-more-horizontal text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 "></i> </a>
                                 <div class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100  " uk-drop="mode: hover;pos: top-right">
                               
@@ -259,8 +259,8 @@
                                           </a> 
                                       </li>
                                     </ul>
-                                
                                 </div>
+                                {% endif %}
                               </div>
                             </div>
                             
