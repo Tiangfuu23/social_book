@@ -24,7 +24,9 @@ class Post(models.Model):
   id = models.UUIDField(primary_key=True, default=uuid.uuid4) #Auto increasing id
   # callable object uuid.uuid4 -> Generate a random UUID.
   user = models.CharField(max_length = 100)
+  data_type = models.IntegerField(default=1)
   image = models.ImageField(upload_to='post_images')
+  video = models.FileField(upload_to='post_videos', null=True)
   caption = models.TextField()
   created_at = models.DateTimeField(default=datetime.now)
   no_of_likes = models.IntegerField(default = 0)

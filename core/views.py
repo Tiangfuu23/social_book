@@ -176,15 +176,23 @@ def settings(request):
 
 @login_required(login_url='signin')
 def upload(request):
+  print(request.POST['data_type'])
   if request.method == "POST":
-    user = request.user.username
-    image = request.FILES.get('image_upload')
-    caption = request.POST['caption']
-    
-    new_post = Post.objects.create(user=user, image = image, caption = caption)
-    new_post.save()
-
-    print(new_post)
+    data_type_file = int(request.POST['data_type'])
+    if data_type_file == 1:  # File is an Image
+      user = request.user.username
+      image = request.FILES.get('image_upload')
+      caption = request.POST['caption']
+      
+      new_post = Post.objects.create(user=user, image = image, caption = caption, data_type=data_type_file)
+      new_post.save()
+    else: 
+      # data_type_file == 2: # File is a video
+      user = request.user.username
+      video = request.FILES.get('video_upload')
+      caption = request.POST['caption']
+      new_post = Post.objects.create(user=user, video = video,caption=caption,data_type=data_type_file)
+      new_post.save()
     return redirect('/')
   else:
     return redirect("/")

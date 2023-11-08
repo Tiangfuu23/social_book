@@ -136,24 +136,27 @@
 									
 								</aside>
 							</div><!-- sidebar -->
-							
-
-
-
-
-
-
-
-
-
 							<div class="col-lg-6">
 								<div class="central-meta">
 									<ul class="photos">
 										{% for post in user_posts %}
-										<li>
-											<a class="strip" href="{{post.image.url}}" title="" data-strip-group="mygroup" data-strip-group-options="loop: true">
-												<img src="{{post.image.url}}" style="height: 250px; width: 300px;" alt=""></a>
-										</li>
+											{% if post.data_type == 1 %}
+												<li>
+													<a class="strip" href="{{post.image.url}}" title="" data-strip-group="mygroup" data-strip-group-options="loop: true">
+														<img src="{{post.image.url}}" style="height: 250px; width: 300px;" alt=""></a>
+												</li>
+											{% elif post.data_type == 2 %}
+											<li>
+												<!-- <a class="strip" href="{{post.video.url}}" title="" data-strip-group="mygroup" data-strip-group-options="loop: true">
+													<video src="{{post.video.url}}" width="250px" height="300px" loop muted playsinline uk-video="autoplay: inview"></video> -->
+													<div uk-lightbox class="flex items-center justify-center max-h-52">
+														<a class="uk-button uk-button-default" href="{{post.video.url}}" data-caption="Video">
+																<!-- Preview -->
+																<video src="{{post.video.url}}" width="250px" height="300px" loop muted playsinline uk-video="autoplay: inview"></video>
+														</a>
+												</div>
+											</li>
+											{% endif %}
 										{% endfor %}
 									</ul>
 									<!--<div class="lodmore"><button class="btn-view btn-load-more"></button></div>-->
